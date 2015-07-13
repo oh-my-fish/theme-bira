@@ -38,9 +38,9 @@ function __git_status
 end
 
 function __ruby_version
-  if type "rvm-prompt" > /dev/null
+  if type "rvm-prompt" > /dev/null 2>&1
     set ruby_version (rvm-prompt i v g)
-  else if type "rbenv" > /dev/null
+  else if type "rbenv" > /dev/null 2>&1
     set ruby_version (rbenv version-name)
   else
     set ruby_version "system"
