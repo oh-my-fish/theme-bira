@@ -12,7 +12,7 @@ function __user_host
 end
 
 function __current_path
-  echo -n (set_color --bold blue) (pwd) (set_color normal) 
+  echo -n (set_color --bold blue) (string replace $HOME '~' (pwd)) (set_color normal)
 end
 
 function _git_branch_name
