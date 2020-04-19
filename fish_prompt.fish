@@ -37,32 +37,11 @@ function __git_status
   end
 end
 
-function __ruby_version
-  if type "rvm-prompt" > /dev/null 2>&1
-    set ruby_version (rvm-prompt i v g)
-  else if type "rbenv" > /dev/null 2>&1
-    set ruby_version (rbenv version-name)
-  else
-    set ruby_version "system"
-  end
-
-  echo -n (set_color red) ‹$ruby_version› (set_color normal)
-end
-
 function fish_prompt
-  echo -n (set_color white)"╭─"(set_color normal)
+  echo -en (set_color white)"\n╭─"(set_color normal)
   __user_host
   __current_path
-  __ruby_version
   __git_status
   echo -e ''
   echo (set_color white)"╰─"(set_color --bold white)"\$ "(set_color normal)
-end
-
-function fish_right_prompt
-  set -l st $status
-
-  if [ $st != 0 ];
-    echo (set_color red) ↵ $st(set_color normal)
-  end
 end
