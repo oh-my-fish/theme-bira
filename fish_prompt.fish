@@ -12,7 +12,7 @@ function __user_host
 end
 
 function __current_path
-  echo -n (set_color --bold blue) (pwd) (set_color normal) 
+  echo -n (set_color --bold blue) (pwd | sed "s\\$HOME\\~\\") (set_color normal) 
 end
 
 function _git_branch_name
@@ -42,11 +42,11 @@ function __ruby_version
     set ruby_version (rvm-prompt i v g)
   else if type "rbenv" > /dev/null 2>&1
     set ruby_version (rbenv version-name)
-  else
-    set ruby_version "system"
   end
 
-  echo -n (set_color red) ‹$ruby_version› (set_color normal)
+  if set -q ruby_version
+    echo -n (set_color red) ‹$ruby_version› (set_color normal)
+  end
 end
 
 function fish_prompt
